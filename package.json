@@ -1,0 +1,54 @@
+{
+  "name": "instaintellisense",
+  "displayName": "InstaIntellisense",
+  "description": "Customizable automatic IntelliSense triggering",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.91.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.acceptSelectedSuggestionAndTrigger",
+        "title": "Accept Suggestion and Trigger IntelliSense"
+      },
+      {
+        "command": "extension.toggleAutoSuggest",
+        "title": "Toggle Auto Suggest"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "extension.acceptSelectedSuggestionAndTrigger",
+        "key": "enter",
+        "when": "suggestWidgetVisible && textInputFocus"
+      },
+      {
+        "command": "editor.action.triggerSuggest",
+        "key": "shift+space",
+        "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly && !suggestWidgetVisible"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^16.18.104",
+    "@types/vscode": "^1.91.0",
+    "@typescript-eslint/eslint-plugin": "^5.42.0",
+    "@typescript-eslint/parser": "^5.42.0",
+    "eslint": "^8.26.0",
+    "typescript": "^4.8.4"
+  }
+}
